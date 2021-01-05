@@ -15,8 +15,12 @@ for char in text:
             # initialize count
             dict_freq[char] = text.count(char)
 
+# Calculate dataframe that contains frequency of each letter
 df_freq = pd.DataFrame(list(dict_freq.items()), columns = ['Letter', 'Count'])
 df_freq.set_index('Letter', inplace = True)
 df_freq.sort_values(by = 'Count', ascending = False, inplace = True)
+
+# Create frequency percentage
+df_freq['Count [%]'] = df_freq['Count'] / df_freq['Count'].sum() * 100
 
 print(df_freq)
